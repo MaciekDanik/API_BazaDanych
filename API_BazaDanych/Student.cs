@@ -12,9 +12,11 @@ namespace API_BazaDanych
         public string Name { get; set; }
         public float Average { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public override string ToString()
         {
-            return $"ID: {Id},\tName: {Name},\tAverage: {Average:00}";
+            return $"ID: {Id},\tName: {Name},\tAverage: {Average:00},\tDeleted: {IsDeleted}" + Environment.NewLine;
         }
     }
 }

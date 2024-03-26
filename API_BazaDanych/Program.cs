@@ -4,8 +4,14 @@
     {
         static void Main(string[] args)
         {
-            APITest t = new APITest();
-            t.GetData().Wait();
+            //APITest t = new APITest();
+            //t.GetData().Wait();
+
+            DrinkAPI d = new DrinkAPI();
+            d.getData().Wait();
+
+            Console.WriteLine(d.drinks.ElementAt(148).SearchID);
+            
         }
     }
 }
