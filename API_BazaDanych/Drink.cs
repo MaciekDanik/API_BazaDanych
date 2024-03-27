@@ -8,40 +8,23 @@ namespace API_BazaDanych
 {
     public class Drink
     {
-        public string Name { get; set; }
-
-        public string drinkPIC { get; set; }
-
-        public string SearchID { get; set; }
-        public bool IsAlcoholic { get; set; }
-
         public int ID { get; set; }
+        public string SearchID { get; set; }
+        public string Name { get; set; }
+        public string AlternateDrink { get; set; }
+        public string Tags { get; set; }
+        public string Category { get; set; }
+        public string Glass { get; set; }
+        public string Instructions { get; set; }
+        public string drinkPIC { get; set; }        
+        public bool IsAlcoholic { get; set; }
+        public IngredientsAndMeasures Ingredients_Measures { get; set; }
+
 
         public override string ToString()
         {
             return $"ID: {ID},\t Name: {Name},\t Alcoholic: {IsAlcoholic}" + Environment.NewLine;
         }
 
-    }
-
-    public class Drink_Template
-    {
-        public string strDrink { get; set; }
-
-        public string strDrinkThumb { get; set; }
-
-        public string idDrink { get; set; }
-        //public bool IsAlcoholic { get; set; }
-
-        public override string ToString()
-        {
-            return $"ID: {idDrink},\t Name: {strDrink},\t Alcoholic: " + Environment.NewLine;
-        }
-
-    }
-
-    public class Drinks
-    {
-        public Drink_Template[] drinks { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace API_BazaDanych
 {
@@ -29,32 +30,6 @@ namespace API_BazaDanych
     public class DrinkAPI
     {
         public List<Drink> drinks = new List<Drink>();
-        public HttpClient client;
-        public async Task GetData()
-        {
-            client = new HttpClient();
-            string call_Alcoholic = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic";
-            string call_NonAlcoholic = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic";
-            string response_Alcoholic = await client.GetStringAsync(call_Alcoholic);
-            string response_NonAlcoholic = await client.GetStringAsync(call_NonAlcoholic);
-
-            //List<Drink> Drinks_Alcoholic = JsonSerializer.Deserialize<List<Drink>>(response_Alcoholic);
-            //List<Drink> Drinks_NonAlcoholic = JsonSerializer.Deserialize<List<Drink>>(response_NonAlcoholic);
-
-            /*foreach(var d in Drinks_Alcoholic)
-            {
-                //d.IsAlcoholic = true;
-                Console.WriteLine(d.ToString());
-            }
-            foreach(var d in Drinks_NonAlcoholic)
-            {
-                //d.IsAlcoholic = false;
-            }*/
-
-            //Console.WriteLine(Drinks_Alcoholic.ToString());
-
-        }
-
         public async Task getData()
         {
             HttpClient client = new HttpClient();
@@ -106,6 +81,43 @@ namespace API_BazaDanych
             }
 
             foreach (var x in drinks) { Console.WriteLine(x.ToString()); }
+        }
+
+        public async Task getDetails()
+        {
+            HttpClient client = new HttpClient();
+            DetailedDrink detailedDrink = new DetailedDrink();
+            string urlAdress = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
+
+            foreach (var drink in drinks) 
+            {
+                string search = drink.SearchID;
+                string find = urlAdress + search;
+
+                var result = await client.GetAsync(find);
+                if (result.IsSuccessStatusCode) 
+                {
+                    var json = await result.Content.ReadAsStringAsync();
+                    detailedDrink = JsonSerializer.Deserialize<DetailedDrink>(json);
+
+                    //Console.WriteLine(detailedDrink.ToString());
+/*                        foreach(var detail in detailedDrink._drink)
+                        {
+                            Console.WriteLine(detail.strIngredient1);
+                            //drink.AlternateDrink = detailedDrink;
+                        }*/
+                    if(detailedDrink.drink.strMeasure1 is not null)
+                    {
+                        Console.WriteLine(detailedDrink.drink.strMeasure1);
+                    }
+                    
+                    
+
+                }
+
+                
+                
+            }
         }
     }
 }

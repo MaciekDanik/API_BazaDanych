@@ -10,6 +10,8 @@
             DrinkAPI d = new DrinkAPI();
             d.getData().Wait();
 
+            d.getDetails().Wait();
+
             Console.WriteLine(d.drinks.ElementAt(148).SearchID);
             
         }
