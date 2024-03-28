@@ -23,7 +23,7 @@ namespace API_BazaDanych
 
         public override string ToString()
         {
-            return $"ID: {ID},\t Name: {Name},\t Alcoholic: {IsAlcoholic}" + Environment.NewLine;
+            return $"ID: {ID},\t Name: {Name},\t Alcoholic: {IsAlcoholic},\t SearchID: {SearchID}" + Environment.NewLine;
         }
 
     }
