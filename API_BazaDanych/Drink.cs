@@ -24,6 +24,12 @@ namespace API_BazaDanych
         public List<string> Measuers { get; set; }
         //public IngredientsAndMeasures? Ingredients_Measures { get; set; }
 
+        public Drink()
+        {
+            Ingredients = new List<string>();
+            Measuers = new List<string>();
+        }
+
 
         public override string ToString()
         {

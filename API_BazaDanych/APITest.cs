@@ -103,9 +103,9 @@ namespace API_BazaDanych
 
                 DetailedDrink detailedDrink = Newtonsoft.Json.JsonConvert.DeserializeObject<DetailedDrink>(json);
 
-                if(detailedDrink.drinks[0].strIngredient12 != null)
+                if(detailedDrink.drinks[0].strIngredient1 != null)
                 {
-                    Console.WriteLine($"ID: {drink.ID}\t Name: {detailedDrink.drinks[0].strIngredient12}");
+                    Console.WriteLine($"ID: {drink.ID}\t Name: {detailedDrink.drinks[0].strIngredient1}");
                 }
                 else { Console.WriteLine("NULL"); }
 

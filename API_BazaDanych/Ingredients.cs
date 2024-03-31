@@ -8,9 +8,13 @@ namespace API_BazaDanych
 {
     public class IngredientsAndMeasures
     {
-        public List<string>? Ingredients;
-        public List<string>? Measures;
+        public List<string> Ingredients { get; set; }
+        public List<string> Measures { get; set; }
 
+        public IngredientsAndMeasures() {
+            Ingredients = new List<string>();
+            Measures = new List<string>();
+        }
         public override string ToString()
         {
             string result="";

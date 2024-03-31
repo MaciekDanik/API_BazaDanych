@@ -115,131 +115,168 @@ namespace GUI
                 selectedDrink.Glass = detailedDrink.drinks[0].strGlass;
                 selectedDrink.Instructions = detailedDrink.drinks[0].strInstructions;
                 
-
-                string ingr1 = detailedDrink.drinks[0].strIngredient1;
-                if ( ingr1 != null)
+                if (detailedDrink.drinks[0].strIngredient1 != null)
+                {                 
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient1);
+                }
+                else
                 {
-                    //selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient1.ToString());
-                    selectedDrink.Ingredients.Add(ingr1);
-                }/*
+                    selectedDrink.Ingredients.Add("");
+                }
                 if (detailedDrink.drinks[0].strIngredient2 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient2);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient2);
+                }
+                else
+                {
+                    selectedDrink.Ingredients.Add("");
                 }
                 if (detailedDrink.drinks[0].strIngredient3 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient3);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient3);
+                }
+                else
+                {
+                    selectedDrink.Ingredients.Add("");
                 }
                 if (detailedDrink.drinks[0].strIngredient4 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient4);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient4);
+                }
+                else
+                {
+                    selectedDrink.Ingredients.Add("");
                 }
                 if (detailedDrink.drinks[0].strIngredient5 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient5);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient5);
+                }
+                else
+                {
+                    selectedDrink.Ingredients.Add("");
                 }
                 if (detailedDrink.drinks[0].strIngredient6 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient6);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient6);
                 }
                 if (detailedDrink.drinks[0].strIngredient7 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient7);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient7);
                 }
                 if (detailedDrink.drinks[0].strIngredient8 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient8);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient8);
                 }
                 if (detailedDrink.drinks[0].strIngredient9 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient9);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient9);
                 }
                 if (detailedDrink.drinks[0].strIngredient10 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient10);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient10);
                 }
                 if (detailedDrink.drinks[0].strIngredient11 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient11);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient11);
                 }
                 if (detailedDrink.drinks[0].strIngredient12 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient12);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient12);
                 }
                 if (detailedDrink.drinks[0].strIngredient13 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient13);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient13);
                 }
                 if (detailedDrink.drinks[0].strIngredient14 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient14);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient14);
                 }
                 if (detailedDrink.drinks[0].strIngredient15 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Ingredients.Add(detailedDrink.drinks[0].strIngredient15);
+                    selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient15);
                 }
 
                 if (detailedDrink.drinks[0].strMeasure1 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure1);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure1);
+                }
+                else
+                {
+                    selectedDrink.Measuers.Add("");
                 }
                 if (detailedDrink.drinks[0].strMeasure2 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure2);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure2);
+                }
+                else
+                {
+                    selectedDrink.Measuers.Add("");
                 }
                 if (detailedDrink.drinks[0].strMeasure3 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure3);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure3);
+                }
+                else
+                {
+                    selectedDrink.Measuers.Add("");
                 }
                 if (detailedDrink.drinks[0].strMeasure4 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure4);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure4);
+                }
+                else
+                {
+                    selectedDrink.Measuers.Add("");
                 }
                 if (detailedDrink.drinks[0].strMeasure5 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure5);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure5);
+                }
+                else
+                {
+                    selectedDrink.Measuers.Add("");
                 }
                 if (detailedDrink.drinks[0].strMeasure6 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure6);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure6);
                 }
                 if (detailedDrink.drinks[0].strMeasure7 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure7);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure7);
                 }
                 if (detailedDrink.drinks[0].strMeasure8 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure8);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure8);
                 }
                 if (detailedDrink.drinks[0].strMeasure9 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure9);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure9);
                 }
                 if (detailedDrink.drinks[0].strMeasure10 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure10);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure10);
                 }
                 if (detailedDrink.drinks[0].strMeasure11 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure11);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure11);
                 }
                 if (detailedDrink.drinks[0].strMeasure12 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure12);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure12);
                 }
                 if (detailedDrink.drinks[0].strMeasure13 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure13);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure13);
                 }
                 if (detailedDrink.drinks[0].strMeasure14 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure14);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure14);
                 }
                 if (detailedDrink.drinks[0].strMeasure15 != null)
                 {
-                    selectedDrink.Ingredients_Measures.Measures.Add(detailedDrink.drinks[0].strMeasure15);
+                    selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure15);
                 }
-                */
+                
                 Details detailsForm = new Details(selectedDrink);
                 detailsForm.ShowDialog();
 
