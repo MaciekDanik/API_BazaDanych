@@ -1,4 +1,6 @@
-﻿namespace API_BazaDanych
+﻿using System.Runtime.CompilerServices;
+
+namespace API_BazaDanych
 {
     internal class Program
     {
@@ -10,7 +12,9 @@
             DrinkAPI d = new DrinkAPI();
             d.getData().Wait();
 
-            d.getDetails().Wait();
+            Drink drink = d.drinks[0];
+
+            d.getDetails(drink).Wait();
 
             Console.WriteLine(d.drinks.ElementAt(0).SearchID);
             

@@ -6,6 +6,9 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using static System.Net.WebRequestMethods;
 using Newtonsoft.Json;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("GUI")]
 
 namespace API_BazaDanych
 {
@@ -84,33 +87,29 @@ namespace API_BazaDanych
             foreach (var x in drinks) { Console.WriteLine(x.ToString()); }
         }
 
-        public async Task getDetails()
+        public async Task getDetails(Drink drink)
         {
             HttpClient client = new HttpClient();
             //DetailedDrink detailedDrink = new DetailedDrink();
             string urlAdress = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
-            int ctr = 0;
-            foreach (var drink in drinks) 
+            string search = drink.SearchID;
+            string find = urlAdress + search;
+
+            var result = await client.GetAsync(find);
+            if (result.IsSuccessStatusCode)
             {
-                string search = drink.SearchID;
-                string find = urlAdress + search;
+                var json = await result.Content.ReadAsStringAsync();
 
-                var result = await client.GetAsync(find);
-                if (result.IsSuccessStatusCode)
+                DetailedDrink detailedDrink = Newtonsoft.Json.JsonConvert.DeserializeObject<DetailedDrink>(json);
+
+                if(detailedDrink.drinks[0].strIngredient12 != null)
                 {
-                    var json = await result.Content.ReadAsStringAsync();
+                    Console.WriteLine($"ID: {drink.ID}\t Name: {detailedDrink.drinks[0].strIngredient12}");
+                }
+                else { Console.WriteLine("NULL"); }
 
-                    DetailedDrink detailedDrink = Newtonsoft.Json.JsonConvert.DeserializeObject<DetailedDrink>(json);
-
-                    //DetailedDrink_Template detailedDrink = Newtonsoft.Json.JsonConvert.DeserializeObject<DetailedDrink_Template>(json);
-
-                    Console.WriteLine($"ID: {ctr}\t Name: {detailedDrink.drinks[0].strDrink}");
-                    ctr++;
-
-                } 
             }
-
         }
     }
 }

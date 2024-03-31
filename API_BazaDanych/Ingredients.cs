@@ -8,8 +8,8 @@ namespace API_BazaDanych
 {
     public class IngredientsAndMeasures
     {
-        public List<string> Ingredients;
-        public List<string> Measures;
+        public List<string>? Ingredients;
+        public List<string>? Measures;
 
         public override string ToString()
         {
