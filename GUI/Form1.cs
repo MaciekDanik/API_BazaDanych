@@ -7,6 +7,7 @@ namespace GUI
 {
     public partial class Form1 : Form
     {
+        private DrinkDB DrinkDB;
         public List<Drink> drinks = new List<Drink>();
         private HttpClient client;
         private Drinks TMPdrinks_Alc;
@@ -17,14 +18,21 @@ namespace GUI
         public Form1()
         {
             InitializeComponent();
+            DrinkDB = new DrinkDB();
             client = new HttpClient();
             TMPdrinks_Alc = new Drinks();
             TMPdrinks_NonAlc = new Drinks();
             id = 1;
+
+
+            //lstBox_Initial.DataSource = DrinkDB.Drinks.ToList<Drink>();
         }
 
         private async void btn_LoadData_Click(object sender, EventArgs e)
         {
+
+            DrinkDB.Drinks.RemoveRange(DrinkDB.Drinks);
+            //lstBox_Initial.Items.Clear();
             var result = await client.GetAsync("https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic");
 
             if (result.IsSuccessStatusCode)
@@ -42,6 +50,10 @@ namespace GUI
                     tmp.ID = id;
 
                     drinks.Add(tmp);
+
+                    DrinkDB.Drinks.Add(tmp);
+                    DrinkDB.SaveChanges();
+
                     id++;
                     //Console.WriteLine(drink.ToString());
                 }
@@ -63,15 +75,22 @@ namespace GUI
                     tmp.ID = id;
 
                     drinks.Add(tmp);
+
+                    DrinkDB.Drinks.Add(tmp);
+                    DrinkDB.SaveChanges();
+
                     id++;
                     //Console.WriteLine(drink.ToString());
                 }
             }
+            id = 1;
 
             foreach (var drink in drinks)
             {
+                //txtBox_InitialResult.Text += drink.ToString();
                 txtBox_InitialResult.Text += drink.ToString();
-                lstBox_Initial.Items.Add(drink);
+                //lstBox_Initial.Items.Add(drink);
+                lstBox_Initial.DataSource = DrinkDB.Drinks.ToList<Drink>();
             }
         }
 
@@ -114,9 +133,9 @@ namespace GUI
                 selectedDrink.Category = detailedDrink.drinks[0].strCategory;
                 selectedDrink.Glass = detailedDrink.drinks[0].strGlass;
                 selectedDrink.Instructions = detailedDrink.drinks[0].strInstructions;
-                
+
                 if (detailedDrink.drinks[0].strIngredient1 != null)
-                {                 
+                {
                     selectedDrink.Ingredients.Add(detailedDrink.drinks[0].strIngredient1);
                 }
                 else
@@ -276,12 +295,22 @@ namespace GUI
                 {
                     selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure15);
                 }
-                
+
                 Details detailsForm = new Details(selectedDrink);
                 detailsForm.ShowDialog();
 
 
             }
+        }
+
+        private void btn_SortAlc_Click(object sender, EventArgs e)
+        {
+            lstBox_Initial.DataSource = DrinkDB.Drinks.Where(s => s.IsAlcoholic == true).ToList<Drink>();
+        }
+
+        private void btn_SortNonAlc_Click(object sender, EventArgs e)
+        {
+            lstBox_Initial.DataSource = DrinkDB.Drinks.Where(s => s.IsAlcoholic == false).ToList<Drink>();
         }
     }
 }

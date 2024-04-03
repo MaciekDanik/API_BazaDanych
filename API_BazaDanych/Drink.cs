@@ -13,21 +13,26 @@ namespace API_BazaDanych
         public int ID { get; set; }
         public string SearchID { get; set; }
         public string Name { get; set; }
-        public string AlternateDrink { get; set; }
-        public string Tags { get; set; }
-        public string Category { get; set; }
-        public string Glass { get; set; }
-        public string Instructions { get; set; }
-        public string drinkPIC { get; set; }        
+        public string? AlternateDrink { get; set; }
+        public string? Tags { get; set; }
+        public string? Category { get; set; }
+        public string? Glass { get; set; }
+        public string? Instructions { get; set; }
+        public string? drinkPIC { get; set; }        
         public bool IsAlcoholic { get; set; }
-        public List<string> Ingredients { get; set; }
-        public List<string> Measuers { get; set; }
+        public List<string>? Ingredients { get; set; }
+        public List<string>? Measuers { get; set; }
         //public IngredientsAndMeasures? Ingredients_Measures { get; set; }
 
         public Drink()
         {
             Ingredients = new List<string>();
             Measuers = new List<string>();
+            //SearchID = "placeHolder";
+            Tags = "";
+            Category = "";
+            Glass = "";
+            Instructions = "";
         }
 
 

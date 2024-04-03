@@ -32,6 +32,8 @@
             txtBox_InitialResult = new TextBox();
             lstBox_Initial = new ListBox();
             btn_GetDetails = new Button();
+            btn_SortAlc = new Button();
+            btn_SortNonAlc = new Button();
             SuspendLayout();
             // 
             // btn_LoadData
@@ -41,7 +43,7 @@
             btn_LoadData.Name = "btn_LoadData";
             btn_LoadData.Size = new Size(150, 96);
             btn_LoadData.TabIndex = 1;
-            btn_LoadData.Text = "Run";
+            btn_LoadData.Text = "DownloadData";
             btn_LoadData.UseVisualStyleBackColor = true;
             btn_LoadData.Click += btn_LoadData_Click;
             // 
@@ -76,11 +78,35 @@
             btn_GetDetails.UseVisualStyleBackColor = true;
             btn_GetDetails.Click += btn_GetDetails_Click;
             // 
+            // btn_SortAlc
+            // 
+            btn_SortAlc.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            btn_SortAlc.Location = new Point(75, 268);
+            btn_SortAlc.Name = "btn_SortAlc";
+            btn_SortAlc.Size = new Size(109, 40);
+            btn_SortAlc.TabIndex = 5;
+            btn_SortAlc.Text = "Sort Alc";
+            btn_SortAlc.UseVisualStyleBackColor = true;
+            btn_SortAlc.Click += btn_SortAlc_Click;
+            // 
+            // btn_SortNonAlc
+            // 
+            btn_SortNonAlc.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            btn_SortNonAlc.Location = new Point(75, 314);
+            btn_SortNonAlc.Name = "btn_SortNonAlc";
+            btn_SortNonAlc.Size = new Size(109, 40);
+            btn_SortNonAlc.TabIndex = 6;
+            btn_SortNonAlc.Text = "Sort NonAlc";
+            btn_SortNonAlc.UseVisualStyleBackColor = true;
+            btn_SortNonAlc.Click += btn_SortNonAlc_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(884, 574);
+            Controls.Add(btn_SortNonAlc);
+            Controls.Add(btn_SortAlc);
             Controls.Add(btn_GetDetails);
             Controls.Add(lstBox_Initial);
             Controls.Add(txtBox_InitialResult);
@@ -96,5 +122,7 @@
         private TextBox txtBox_InitialResult;
         private ListBox lstBox_Initial;
         private Button btn_GetDetails;
+        private Button btn_SortAlc;
+        private Button btn_SortNonAlc;
     }
 }

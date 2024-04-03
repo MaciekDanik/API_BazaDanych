@@ -12,25 +12,6 @@ using System.Runtime.CompilerServices;
 
 namespace API_BazaDanych
 {
-    public class APITest
-    {
-        public HttpClient client;
-        public async Task GetData()
-        {
-            client = new HttpClient();
-            string call = "http://radoslaw.idzikowski.staff.iiar.pwr.wroc.pl/instruction/students.json";
-            string response = await client.GetStringAsync(call);
-
-            List<Student> students = System.Text.Json.JsonSerializer.Deserialize<List<Student>>(response);
-
-            foreach(var student in students)
-            {
-                student.IsDeleted = false;
-                Console.WriteLine(student.ToString());
-            }
-        }
-    }
-
     public class DrinkAPI
     {
         public List<Drink> drinks = new List<Drink>();

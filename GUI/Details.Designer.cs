@@ -38,6 +38,7 @@
             txtBox_drinkGlass = new TextBox();
             txtBox_recepie = new TextBox();
             txtBox_ingredients = new TextBox();
+            btn_AddToFav = new Button();
             SuspendLayout();
             // 
             // lbl_drinkName
@@ -135,11 +136,23 @@
             txtBox_ingredients.Size = new Size(396, 257);
             txtBox_ingredients.TabIndex = 10;
             // 
+            // btn_AddToFav
+            // 
+            btn_AddToFav.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 238);
+            btn_AddToFav.Location = new Point(447, 388);
+            btn_AddToFav.Name = "btn_AddToFav";
+            btn_AddToFav.Size = new Size(92, 46);
+            btn_AddToFav.TabIndex = 11;
+            btn_AddToFav.Text = "AddToFav";
+            btn_AddToFav.UseVisualStyleBackColor = true;
+            btn_AddToFav.Click += btn_AddToFav_Click;
+            // 
             // Details
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(871, 535);
+            Controls.Add(btn_AddToFav);
             Controls.Add(txtBox_ingredients);
             Controls.Add(txtBox_recepie);
             Controls.Add(txtBox_drinkGlass);
@@ -169,5 +182,6 @@
         private TextBox txtBox_drinkGlass;
         private TextBox txtBox_recepie;
         private TextBox txtBox_ingredients;
+        private Button btn_AddToFav;
     }
 }
