@@ -14,11 +14,10 @@ namespace GUI
     public partial class Details : Form
     {
         private Drink drink;
-        private Favourites Fav;
+
         public Details(Drink _drink)
         {
             InitializeComponent();
-            Fav = new Favourites();
             drink = _drink;
             txtBox_drinkName.Text = drink.Name;
             txtBox_drinkCategory.Text = drink.Category;
@@ -47,7 +46,12 @@ namespace GUI
 
         private void btn_AddToFav_Click(object sender, EventArgs e)
         {
-            Fav.FavDrinks.Add(drink);
+
+        }
+
+        private void txtBox_drinkName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

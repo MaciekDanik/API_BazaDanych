@@ -22,13 +22,15 @@ namespace API_BazaDanych
         public bool IsAlcoholic { get; set; }
         public List<string>? Ingredients { get; set; }
         public List<string>? Measuers { get; set; }
+        public bool detailed { get; set; }
         //public IngredientsAndMeasures? Ingredients_Measures { get; set; }
 
         public Drink()
         {
             Ingredients = new List<string>();
             Measuers = new List<string>();
-            //SearchID = "placeHolder";
+            //SearchID = "";
+            detailed = false;
             Tags = "";
             Category = "";
             Glass = "";
