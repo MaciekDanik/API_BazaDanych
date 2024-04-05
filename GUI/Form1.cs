@@ -7,7 +7,7 @@ namespace GUI
 {
     public partial class Form1 : Form
     {
-        private DrinkDB DrinkDB;
+        public DrinkDB DrinkDB;
         public List<Drink> drinks = new List<Drink>();
         private HttpClient client;
         private Drinks TMPdrinks_Alc;
@@ -102,13 +102,13 @@ namespace GUI
 
             txtBox_InitialResult.Text = wynik.ToString();
 
-/*            foreach (var drink in drinks)
-            {
-                if (drink.ID == wynik)
-                {
-                    selectedDrink = drink;
-                }
-            }*/
+            /*            foreach (var drink in drinks)
+                        {
+                            if (drink.ID == wynik)
+                            {
+                                selectedDrink = drink;
+                            }
+                        }*/
 
             selectedDrink = DrinkDB.Drinks.Find(wynik);
 
@@ -118,6 +118,7 @@ namespace GUI
         {
             if (selectedDrink.detailed == false)
             {
+
 
                 string urlAdress = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
                 string search = selectedDrink.SearchID;
@@ -298,14 +299,14 @@ namespace GUI
                         selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure15);
                     }
 
-                    Details detailsForm = new Details(selectedDrink);
+                    Details detailsForm = new Details(selectedDrink, DrinkDB);
                     detailsForm.ShowDialog();
 
 
                 }
                 else
                 {
-                    Details detailsForm = new Details(selectedDrink);
+                    Details detailsForm = new Details(selectedDrink, DrinkDB);
                     detailsForm.ShowDialog();
                 }
             }
@@ -319,6 +320,18 @@ namespace GUI
         private void btn_SortNonAlc_Click(object sender, EventArgs e)
         {
             lstBox_Initial.DataSource = DrinkDB.Drinks.Where(s => s.IsAlcoholic == false).ToList<Drink>();
+        }
+
+        private void btn_clearFilter_Click(object sender, EventArgs e)
+        {
+            lstBox_Initial.DataSource = DrinkDB.Drinks.ToList<Drink>();
+            txtBox_FilterName.Clear();
+        }
+
+        private void txtBox_FilterName_TextChanged(object sender, EventArgs e)
+        {
+            string reg = txtBox_FilterName.Text;
+            lstBox_Initial.DataSource = DrinkDB.Drinks.Where(s => s.Name.Contains(reg)).ToList<Drink>();
         }
     }
 }

@@ -14,8 +14,7 @@ namespace GUI
     public partial class Details : Form
     {
         private Drink drink;
-
-        public Details(Drink _drink)
+        public Details(Drink _drink, DrinkDB database)
         {
             InitializeComponent();
             drink = _drink;
@@ -25,7 +24,11 @@ namespace GUI
             txtBox_recepie.Text = drink.Instructions;
             txtBox_ingredients.Text = drink.IngrToString();
 
-
+            string urlAdress = drink.drinkPIC;
+            string search = "/preview";
+            string find = urlAdress + search;
+            //pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Load(find);
 
         }
 
@@ -50,6 +53,16 @@ namespace GUI
         }
 
         private void txtBox_drinkName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBox_drinkGlass_TextChanged(object sender, EventArgs e)
         {
 
         }

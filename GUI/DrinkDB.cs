@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GUI
 {
-        internal class DrinkDB : DbContext
+        public class DrinkDB : DbContext
         {
             public DbSet<Drink> Drinks { get; set; }
             //public string DBpath { get; set; }
