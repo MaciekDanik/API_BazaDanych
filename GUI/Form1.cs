@@ -1,4 +1,5 @@
 using API_BazaDanych;
+using Microsoft.Data.Sqlite;
 using System.Linq;
 using System.Text.RegularExpressions;
 using static System.Windows.Forms.LinkLabel;
@@ -25,70 +26,12 @@ namespace GUI
             TMPdrinks_NonAlc = new Drinks();
             id = 1;
 
+            DrinkDB.Drinks.RemoveRange(DrinkDB.Drinks);
             if (DrinkDB.Drinks.Count() != 0)
             {
                 lstBox_Initial.DataSource = DrinkDB.Drinks.ToList<Drink>();
             }
 
-        }
-
-        private async void btn_LoadData_Click(object sender, EventArgs e)
-        {
-
-            DrinkDB.Drinks.RemoveRange(DrinkDB.Drinks);
-            //lstBox_Initial.Items.Clear();
-            var result = await client.GetAsync("https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic");
-
-            if (result.IsSuccessStatusCode)
-            {
-                var json = await result.Content.ReadAsStringAsync();
-                TMPdrinks_Alc = System.Text.Json.JsonSerializer.Deserialize<Drinks>(json);
-
-                foreach (var drink in TMPdrinks_Alc.drinks)
-                {
-                    Drink tmp = new Drink();
-                    tmp.SearchID = drink.idDrink;
-                    tmp.Name = drink.strDrink;
-                    tmp.drinkPIC = drink.strDrinkThumb;
-                    tmp.IsAlcoholic = true;
-                    tmp.ID = id;
-
-                    drinks.Add(tmp);
-
-                    DrinkDB.Drinks.Add(tmp);
-                    DrinkDB.SaveChanges();
-
-                    id++;
-                    //Console.WriteLine(drink.ToString());
-                }
-            }
-
-            var result_nonAlc = await client.GetAsync("https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic");
-            if (result_nonAlc.IsSuccessStatusCode)
-            {
-                var json_non = await result_nonAlc.Content.ReadAsStringAsync();
-                TMPdrinks_NonAlc = System.Text.Json.JsonSerializer.Deserialize<Drinks>(json_non);
-
-                foreach (var drink in TMPdrinks_NonAlc.drinks)
-                {
-                    Drink tmp = new Drink();
-                    tmp.SearchID = drink.idDrink;
-                    tmp.Name = drink.strDrink;
-                    tmp.drinkPIC = drink.strDrinkThumb;
-                    tmp.IsAlcoholic = false;
-                    tmp.ID = id;
-
-                    drinks.Add(tmp);
-
-                    DrinkDB.Drinks.Add(tmp);
-                    DrinkDB.SaveChanges();
-
-                    id++;
-                    //Console.WriteLine(drink.ToString());
-                }
-            }
-            id = 1;
-            lstBox_Initial.DataSource = DrinkDB.Drinks.ToList<Drink>();
         }
 
         private void lstBox_Initial_SelectedIndexChanged(object sender, EventArgs e)
@@ -101,15 +44,6 @@ namespace GUI
             int wynik = int.Parse(res);
 
             txtBox_InitialResult.Text = wynik.ToString();
-
-            /*            foreach (var drink in drinks)
-                        {
-                            if (drink.ID == wynik)
-                            {
-                                selectedDrink = drink;
-                            }
-                        }*/
-
             selectedDrink = DrinkDB.Drinks.Find(wynik);
 
         }
@@ -299,16 +233,53 @@ namespace GUI
                         selectedDrink.Measuers.Add(detailedDrink.drinks[0].strMeasure15);
                     }
 
+
+                    string ConnectionStr = "Data Source=S:\\MyFiles\\Studia\\Sem6\\NET_Java\\Lab2\\API_BazaDanych\\GUI\\Drinks.db;";
+                    //string ConnectionStr = "S:\\MyFiles\\Studia\\Sem6\\NET_Java\\Lab2\\API_BazaDanych\\GUI\\Drinks.db";
+                    SqliteConnection con = new SqliteConnection(ConnectionStr);
+                    con.Open();
+
+
+                    selectedDrink.AlternateDrink = detailedDrink.drinks[0].strDrinkAlternate;
+                    selectedDrink.Tags = detailedDrink.drinks[0].strTags;
+                    selectedDrink.Category = detailedDrink.drinks[0].strCategory;
+                    selectedDrink.Glass = detailedDrink.drinks[0].strGlass;
+                    selectedDrink.Instructions = detailedDrink.drinks[0].strInstructions;
+                    selectedDrink.detailed = true;
+
+                    string Recepie = selectedDrink.Instructions;
+                    string Tags = selectedDrink.Tags;
+                    string Category = selectedDrink.Category;
+                    string Glass = selectedDrink.Glass;
+                    string Alternate = selectedDrink.AlternateDrink;
+                    List<string> Ingr = selectedDrink.Ingredients;
+                    List<string> Meas = selectedDrink.Measuers;
+                    bool det = selectedDrink.detailed;
+
+                    string Query = "UPDATE Drinks SET Instructions = '" + Recepie + "' AND Tags = '" + Tags + "' AND Category = '" + Category + "' AND Glass = '" + Glass + "' AND AlternateDrink = '" + Alternate + "' AND Ingredients = '" + Ingr + "' AND Measuers= '" + Meas + "' AND detailed = '" + det + "' WHERE ID = " + selectedDrink.ID;
+
+                    SqliteCommand cmd = new SqliteCommand(Query, con);
+                    cmd.ExecuteNonQuery();
+
+                    con.Close();
+
+                    selectedDrink = DrinkDB.Drinks.Find(selectedDrink.ID);
+
+                    MessageBox.Show("Data has been saved!");
+
                     Details detailsForm = new Details(selectedDrink, DrinkDB);
+                    //this.Hide();
                     detailsForm.ShowDialog();
 
 
+
                 }
-                else
-                {
-                    Details detailsForm = new Details(selectedDrink, DrinkDB);
-                    detailsForm.ShowDialog();
-                }
+            }
+            else
+            {
+                Details detailsForm = new Details(selectedDrink, DrinkDB);
+                //this.Hide();
+                detailsForm.ShowDialog();
             }
         }
 
@@ -332,6 +303,104 @@ namespace GUI
         {
             string reg = txtBox_FilterName.Text;
             lstBox_Initial.DataSource = DrinkDB.Drinks.Where(s => s.Name.Contains(reg)).ToList<Drink>();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void downloadDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
+            DrinkDB.Drinks.RemoveRange(DrinkDB.Drinks);
+            //lstBox_Initial.Items.Clear();
+            var result = await client.GetAsync("https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic");
+
+            if (result.IsSuccessStatusCode)
+            {
+                var json = await result.Content.ReadAsStringAsync();
+                TMPdrinks_Alc = System.Text.Json.JsonSerializer.Deserialize<Drinks>(json);
+
+                foreach (var drink in TMPdrinks_Alc.drinks)
+                {
+                    Drink tmp = new Drink();
+                    tmp.SearchID = drink.idDrink;
+                    tmp.Name = drink.strDrink;
+                    tmp.drinkPIC = drink.strDrinkThumb;
+                    tmp.IsAlcoholic = true;
+                    tmp.ID = id;
+
+                    drinks.Add(tmp);
+
+                    DrinkDB.Drinks.Add(tmp);
+                    DrinkDB.SaveChanges();
+
+                    id++;
+                    //Console.WriteLine(drink.ToString());
+                }
+            }
+
+            var result_nonAlc = await client.GetAsync("https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic");
+            if (result_nonAlc.IsSuccessStatusCode)
+            {
+                var json_non = await result_nonAlc.Content.ReadAsStringAsync();
+                TMPdrinks_NonAlc = System.Text.Json.JsonSerializer.Deserialize<Drinks>(json_non);
+
+                foreach (var drink in TMPdrinks_NonAlc.drinks)
+                {
+                    Drink tmp = new Drink();
+                    tmp.SearchID = drink.idDrink;
+                    tmp.Name = drink.strDrink;
+                    tmp.drinkPIC = drink.strDrinkThumb;
+                    tmp.IsAlcoholic = false;
+                    tmp.ID = id;
+
+                    drinks.Add(tmp);
+
+                    DrinkDB.Drinks.Add(tmp);
+                    DrinkDB.SaveChanges();
+
+                    id++;
+                    //Console.WriteLine(drink.ToString());
+                }
+            }
+            id = 1;
+            lstBox_Initial.DataSource = DrinkDB.Drinks.ToList<Drink>();
+        }
+
+        private void eraseAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DrinkDB.Drinks.RemoveRange(DrinkDB.Drinks);
+            //lstBox_Initial.DataSource = DrinkDB.Drinks.ToList<Drink>();
+            lstBox_Initial.Text = string.Empty;
+        }
+
+        private void btn_FilterFav_Click(object sender, EventArgs e)
+        {
+            //lstBox_Initial.DataSource = DrinkDB.Drinks.Where(s => s.Favourite == true).ToList<Drink>();
+        }
+
+        private void btn_AddFav_Click(object sender, EventArgs e)
+        {
+            /*string ConnectionStr = "Data Source=S:\\MyFiles\\Studia\\Sem6\\NET_Java\\Lab2\\API_BazaDanych\\GUI\\Drinks.db;";
+            //string ConnectionStr = "S:\\MyFiles\\Studia\\Sem6\\NET_Java\\Lab2\\API_BazaDanych\\GUI\\Drinks.db";
+            SqliteConnection con = new SqliteConnection(ConnectionStr);
+            con.Open();
+
+
+            selectedDrink.Favourite = true;
+            bool fav = selectedDrink.Favourite;
+
+            string Query = "UPDATE Drinks SET Favourite = '" + fav + "' WHERE ID = " + selectedDrink.ID;
+
+            SqliteCommand cmd = new SqliteCommand(Query, con);
+            cmd.ExecuteNonQuery();
+
+            con.Close();
+
+            selectedDrink = DrinkDB.Drinks.Find(selectedDrink.ID);*/
         }
     }
 }

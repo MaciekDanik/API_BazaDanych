@@ -5,13 +5,13 @@
 namespace GUI.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Drink",
+                name: "Drinks",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
@@ -26,11 +26,12 @@ namespace GUI.Migrations
                     drinkPIC = table.Column<string>(type: "TEXT", nullable: true),
                     IsAlcoholic = table.Column<bool>(type: "INTEGER", nullable: false),
                     Ingredients = table.Column<string>(type: "TEXT", nullable: true),
-                    Measuers = table.Column<string>(type: "TEXT", nullable: true)
+                    Measuers = table.Column<string>(type: "TEXT", nullable: true),
+                    detailed = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Drink", x => x.ID);
+                    table.PrimaryKey("PK_Drinks", x => x.ID);
                 });
         }
 
@@ -38,7 +39,7 @@ namespace GUI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Drink");
+                name: "Drinks");
         }
     }
 }
