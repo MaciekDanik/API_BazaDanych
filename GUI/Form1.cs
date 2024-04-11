@@ -26,7 +26,7 @@ namespace GUI
             TMPdrinks_NonAlc = new Drinks();
             id = 1;
 
-            DrinkDB.Drinks.RemoveRange(DrinkDB.Drinks);
+            //DrinkDB.Drinks.RemoveRange(DrinkDB.Drinks);
             if (DrinkDB.Drinks.Count() != 0)
             {
                 lstBox_Initial.DataSource = DrinkDB.Drinks.ToList<Drink>();
@@ -265,6 +265,8 @@ namespace GUI
 
                     selectedDrink = DrinkDB.Drinks.Find(selectedDrink.ID);
 
+                    DrinkDB.SaveChanges();
+
                     MessageBox.Show("Data has been saved!");
 
                     Details detailsForm = new Details(selectedDrink, DrinkDB);
@@ -379,12 +381,12 @@ namespace GUI
 
         private void btn_FilterFav_Click(object sender, EventArgs e)
         {
-            //lstBox_Initial.DataSource = DrinkDB.Drinks.Where(s => s.Favourite == true).ToList<Drink>();
+            lstBox_Initial.DataSource = DrinkDB.Drinks.Where(s => s.Favourite == true).ToList<Drink>();
         }
 
         private void btn_AddFav_Click(object sender, EventArgs e)
         {
-            /*string ConnectionStr = "Data Source=S:\\MyFiles\\Studia\\Sem6\\NET_Java\\Lab2\\API_BazaDanych\\GUI\\Drinks.db;";
+            string ConnectionStr = "Data Source=S:\\MyFiles\\Studia\\Sem6\\NET_Java\\Lab2\\API_BazaDanych\\GUI\\Drinks.db;";
             //string ConnectionStr = "S:\\MyFiles\\Studia\\Sem6\\NET_Java\\Lab2\\API_BazaDanych\\GUI\\Drinks.db";
             SqliteConnection con = new SqliteConnection(ConnectionStr);
             con.Open();
@@ -393,14 +395,14 @@ namespace GUI
             selectedDrink.Favourite = true;
             bool fav = selectedDrink.Favourite;
 
-            string Query = "UPDATE Drinks SET Favourite = '" + fav + "' WHERE ID = " + selectedDrink.ID;
+            string Query = "UPDATE Drinks SET Favourite = '" + fav + "' WHERE ID =" + selectedDrink.ID;
 
             SqliteCommand cmd = new SqliteCommand(Query, con);
             cmd.ExecuteNonQuery();
-
+            DrinkDB.SaveChanges();
             con.Close();
 
-            selectedDrink = DrinkDB.Drinks.Find(selectedDrink.ID);*/
+            selectedDrink = DrinkDB.Drinks.Find(selectedDrink.ID);
         }
     }
 }

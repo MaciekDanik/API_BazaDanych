@@ -28,6 +28,9 @@ namespace GUI.Migrations
                     b.Property<string>("Category")
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("Favourite")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Glass")
                         .HasColumnType("TEXT");
 

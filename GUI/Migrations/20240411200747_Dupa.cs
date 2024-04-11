@@ -5,7 +5,7 @@
 namespace GUI.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Dupa : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,7 +27,8 @@ namespace GUI.Migrations
                     IsAlcoholic = table.Column<bool>(type: "INTEGER", nullable: false),
                     Ingredients = table.Column<string>(type: "TEXT", nullable: true),
                     Measuers = table.Column<string>(type: "TEXT", nullable: true),
-                    detailed = table.Column<bool>(type: "INTEGER", nullable: false)
+                    detailed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Favourite = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

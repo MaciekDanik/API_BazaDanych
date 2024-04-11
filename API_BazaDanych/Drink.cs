@@ -23,7 +23,8 @@ namespace API_BazaDanych
         public List<string>? Ingredients { get; set; }
         public List<string>? Measuers { get; set; }
         public bool detailed { get; set; }
-        //public bool Favourite { get; set; }
+        public bool Favourite { get; set; }
+        //public bool fav { get; set; }
 
         public Drink()
         {
@@ -31,7 +32,7 @@ namespace API_BazaDanych
             Measuers = new List<string>();
             //SearchID = "";
             detailed = false;
-            //Favourite = false;
+            Favourite = false;
             Tags = "";
             Category = "";
             Glass = "";

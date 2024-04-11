@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GUI.Migrations
 {
     [DbContext(typeof(DrinkDB))]
-    [Migration("20240411113440_Initial")]
-    partial class Initial
+    [Migration("20240411200747_Dupa")]
+    partial class Dupa
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,9 @@ namespace GUI.Migrations
 
                     b.Property<string>("Category")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("Favourite")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Glass")
                         .HasColumnType("TEXT");

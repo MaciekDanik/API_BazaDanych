@@ -22,7 +22,8 @@ namespace GUI
             protected override void OnConfiguring(DbContextOptionsBuilder options)
             {
             //options.UseSqlite($"Data Source={DBpath}");
-            options.UseSqlite(@"Data Source=Drinks.db");
+            //options.UseSqlite(@"Data Source=Drinks.db");
+            options.UseSqlite(@"Data Source=DrinksV3.db");
         }
         }
 }
