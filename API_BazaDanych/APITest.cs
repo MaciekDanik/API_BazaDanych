@@ -41,7 +41,6 @@ namespace API_BazaDanych
 
                 drinks.Add(tmp);
                 id++;
-                //Console.WriteLine(drink.ToString());
             }
 
             var result_nonAlc = await client.GetAsync("https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic");
@@ -62,7 +61,6 @@ namespace API_BazaDanych
 
                 drinks.Add(tmp);
                 id++;
-                //Console.WriteLine(drink.ToString());
             }
 
             foreach (var x in drinks) { Console.WriteLine(x.ToString()); }
@@ -71,7 +69,6 @@ namespace API_BazaDanych
         public async Task getDetails(Drink drink)
         {
             HttpClient client = new HttpClient();
-            //DetailedDrink detailedDrink = new DetailedDrink();
             string urlAdress = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
             string search = drink.SearchID;

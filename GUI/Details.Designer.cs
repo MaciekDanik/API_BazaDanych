@@ -99,7 +99,7 @@
             txtBox_drinkName.Margin = new Padding(3, 4, 3, 4);
             txtBox_drinkName.Name = "txtBox_drinkName";
             txtBox_drinkName.ReadOnly = true;
-            txtBox_drinkName.Size = new Size(114, 27);
+            txtBox_drinkName.Size = new Size(177, 27);
             txtBox_drinkName.TabIndex = 6;
             txtBox_drinkName.TextChanged += txtBox_drinkName_TextChanged;
             // 
@@ -109,7 +109,7 @@
             txtBox_drinkCategory.Margin = new Padding(3, 4, 3, 4);
             txtBox_drinkCategory.Name = "txtBox_drinkCategory";
             txtBox_drinkCategory.ReadOnly = true;
-            txtBox_drinkCategory.Size = new Size(114, 27);
+            txtBox_drinkCategory.Size = new Size(177, 27);
             txtBox_drinkCategory.TabIndex = 7;
             // 
             // txtBox_drinkGlass
@@ -118,7 +118,7 @@
             txtBox_drinkGlass.Margin = new Padding(3, 4, 3, 4);
             txtBox_drinkGlass.Name = "txtBox_drinkGlass";
             txtBox_drinkGlass.ReadOnly = true;
-            txtBox_drinkGlass.Size = new Size(114, 27);
+            txtBox_drinkGlass.Size = new Size(177, 27);
             txtBox_drinkGlass.TabIndex = 8;
             txtBox_drinkGlass.TextChanged += txtBox_drinkGlass_TextChanged;
             // 
@@ -146,10 +146,10 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(672, 435);
+            pictureBox1.Location = new Point(656, 433);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(171, 200);
+            pictureBox1.Size = new Size(200, 200);
             pictureBox1.TabIndex = 11;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;

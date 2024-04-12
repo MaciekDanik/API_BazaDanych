@@ -24,7 +24,6 @@ namespace API_BazaDanych
         public List<string>? Measuers { get; set; }
         public bool detailed { get; set; }
         public bool Favourite { get; set; }
-        //public bool fav { get; set; }
 
         public Drink()
         {
@@ -42,13 +41,26 @@ namespace API_BazaDanych
 
         public override string ToString()
         {
-            return $"ID: {ID},\t Name: {Name},\t\t Alcoholic: {IsAlcoholic}" + Environment.NewLine;
+            if (Favourite == false && IsAlcoholic == false)
+            {
+                return $"ID: {ID},\t Name: {Name},\t\tNot Alcoholic" + Environment.NewLine;
+            }
+            else if (Favourite == false && IsAlcoholic == true)
+            {
+                return $"ID: {ID},\t Name: {Name},\t\tAlcoholic" + Environment.NewLine;
+            }
+            else if (Favourite == true && IsAlcoholic == true)
+            {
+                return $"ID: {ID},\t Name: {Name},\t\tAlcoholic,\t\tFav" + Environment.NewLine;
+            }
+            else
+            {
+                return $"ID: {ID},\t Name: {Name},\t\tNot Alcoholic,\t\tFav" + Environment.NewLine;
+            }
         }
 
         public string IngrToString()
         {
-            //string generalInfo = $"ID: {ID}\tName: {Name},\tCategory: {Category}"+Environment.NewLine + $"Alcoholic: {IsAlcoholic}";
-
             string ingr = "";
 
             for (int i = 0; i< Ingredients.Count; i++)

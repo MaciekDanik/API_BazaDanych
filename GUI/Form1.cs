@@ -9,7 +9,6 @@ namespace GUI
     public partial class Form1 : Form
     {
         public DrinkDB DrinkDB;
-        public List<Drink> drinks = new List<Drink>();
         private HttpClient client;
         private Drinks TMPdrinks_Alc;
         private Drinks TMPdrinks_NonAlc;
@@ -235,7 +234,6 @@ namespace GUI
 
 
                     string ConnectionStr = "Data Source=S:\\MyFiles\\Studia\\Sem6\\NET_Java\\Lab2\\API_BazaDanych\\GUI\\Drinks.db;";
-                    //string ConnectionStr = "S:\\MyFiles\\Studia\\Sem6\\NET_Java\\Lab2\\API_BazaDanych\\GUI\\Drinks.db";
                     SqliteConnection con = new SqliteConnection(ConnectionStr);
                     con.Open();
 
@@ -270,7 +268,6 @@ namespace GUI
                     MessageBox.Show("Data has been saved!");
 
                     Details detailsForm = new Details(selectedDrink, DrinkDB);
-                    //this.Hide();
                     detailsForm.ShowDialog();
 
 
@@ -280,7 +277,6 @@ namespace GUI
             else
             {
                 Details detailsForm = new Details(selectedDrink, DrinkDB);
-                //this.Hide();
                 detailsForm.ShowDialog();
             }
         }
@@ -317,7 +313,6 @@ namespace GUI
 
 
             DrinkDB.Drinks.RemoveRange(DrinkDB.Drinks);
-            //lstBox_Initial.Items.Clear();
             var result = await client.GetAsync("https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic");
 
             if (result.IsSuccessStatusCode)
@@ -334,13 +329,10 @@ namespace GUI
                     tmp.IsAlcoholic = true;
                     tmp.ID = id;
 
-                    drinks.Add(tmp);
-
                     DrinkDB.Drinks.Add(tmp);
                     DrinkDB.SaveChanges();
 
                     id++;
-                    //Console.WriteLine(drink.ToString());
                 }
             }
 
@@ -359,24 +351,14 @@ namespace GUI
                     tmp.IsAlcoholic = false;
                     tmp.ID = id;
 
-                    drinks.Add(tmp);
-
                     DrinkDB.Drinks.Add(tmp);
                     DrinkDB.SaveChanges();
 
                     id++;
-                    //Console.WriteLine(drink.ToString());
                 }
             }
             id = 1;
             lstBox_Initial.DataSource = DrinkDB.Drinks.ToList<Drink>();
-        }
-
-        private void eraseAllToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DrinkDB.Drinks.RemoveRange(DrinkDB.Drinks);
-            //lstBox_Initial.DataSource = DrinkDB.Drinks.ToList<Drink>();
-            lstBox_Initial.Text = string.Empty;
         }
 
         private void btn_FilterFav_Click(object sender, EventArgs e)
@@ -387,7 +369,6 @@ namespace GUI
         private void btn_AddFav_Click(object sender, EventArgs e)
         {
             string ConnectionStr = "Data Source=S:\\MyFiles\\Studia\\Sem6\\NET_Java\\Lab2\\API_BazaDanych\\GUI\\Drinks.db;";
-            //string ConnectionStr = "S:\\MyFiles\\Studia\\Sem6\\NET_Java\\Lab2\\API_BazaDanych\\GUI\\Drinks.db";
             SqliteConnection con = new SqliteConnection(ConnectionStr);
             con.Open();
 

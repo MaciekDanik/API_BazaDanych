@@ -13,7 +13,6 @@ namespace API_BazaDanych
         public string strDrinkThumb { get; set; }
 
         public string idDrink { get; set; }
-        //public bool IsAlcoholic { get; set; }
 
         public override string ToString()
         {
@@ -85,7 +84,6 @@ namespace API_BazaDanych
 
     public class DetailedDrink //do serializera json
     {
-        //public DetailedDrink_Template[] drink { get; set; }
         public List<DetailedDrink_Template> drinks { get; set; }
 
         public override string ToString()

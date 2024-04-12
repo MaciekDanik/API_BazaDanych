@@ -27,7 +27,7 @@ namespace GUI
             string urlAdress = drink.drinkPIC;
             string search = "/preview";
             string find = urlAdress + search;
-            //pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.Load(find);
 
         }
